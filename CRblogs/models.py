@@ -86,7 +86,7 @@ class Blog_post(models.Model):
     # main_content = models.TextField()
     keywords = models.TextField()
     trending = models.BooleanField(default=False)
-    no_of_comments = models.IntegerField()
+    no_of_comments = models.IntegerField(default=0)
 
     upload_by = models.CharField(max_length=20)
     upload_by_link = models.CharField(max_length=200)
