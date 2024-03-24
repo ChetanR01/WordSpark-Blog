@@ -13,6 +13,10 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 from pathlib import Path
 import os
 from decouple import config
+import environ
+# Initialise environment variables
+env = environ.Env()
+environ.Env.read_env()
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -90,10 +94,10 @@ WSGI_APPLICATION = 'crrathod.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME':'BlogWebsite',
-        'USER':'postgres',
-        'PASSWORD':'admin',
-        'HOST':'localhost',
+        'NAME':env('DATABASE_NAME'),
+        'USER':env('DATABASE_USER'),
+        'PASSWORD':env('DATABASE_PASSWORD'),
+        'HOST':env('DATABASE_HOST'),
     }
 }
 
@@ -152,6 +156,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # for sending email 
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
-EMAIL_HOST_USER = 'crrathod.tech@gmail.com'
-EMAIL_HOST_PASSWORD ='tdqzsnsvpbyenngz'
+EMAIL_HOST_USER = env('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD =env('EMAIL_HOST_PASSWORD')
 EMAIL_USE_TLS = True
